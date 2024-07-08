@@ -1,0 +1,171 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+  
+
+ <!--CONTENTS-->
+ {% block content %}
+ {% if request.user.is_superuser and request.user.is_staff %}
+ <div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="height: auto;">
+            <div class="card-header">
+                <h4 class="card-title">Statistics</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink"> All Employees</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body p-0 pb-0">
+                      <div class="row">
+                        <div class="col-md-4">
+                        <div class="card" style="background-color: rgba(108, 118, 255, 0.555); margin: 1rem; height: auto;">
+                          <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000;"><strong>Employees</strong></h2>
+                          <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000; "><strong style="font-size: 4rem;">50</strong></h2>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card" style="background-color: rgba(108, 118, 255, 0.555); margin: 1rem; height: auto;">
+                              <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000;"><strong>Departments</strong></h2>
+                              <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000; "><strong style="font-size: 4rem;">{{ leaves.count }}</strong></h2>
+                            </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card" style="background-color: rgba(108, 118, 255, 0.555); margin: 1rem; height: auto;">
+                                  <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000;"><strong>Leaves</strong></h2>
+                                  <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000; "><strong style="font-size: 4rem;">48</strong></h2>
+                                </div>
+                                </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+  </div>
+ </div>
+ {%else%}
+
+
+ <div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="height: auto;">
+            <div class="card-header">
+                <h4 class="card-title">Your Leave statistics</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink">See All Leaves</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body p-0 pb-0">
+                      <div class="row">
+                        <div class="col-md-4">
+                        <div class="card" style="background-color: rgba(108, 118, 255, 0.555); margin: 1rem; height: auto;">
+                          <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000;"><strong>Yearly Leaves</strong></h2>
+                          <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000; "><strong style="font-size: 4rem;">50</strong></h2>
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card" style="background-color: rgba(108, 118, 255, 0.555); margin: 1rem; height: auto;">
+                              <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000;"><strong>Taken Leaves</strong></h2>
+                              <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000; "><strong style="font-size: 4rem;">{{ leaves.count }}</strong></h2>
+                            </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card" style="background-color: rgba(108, 118, 255, 0.555); margin: 1rem; height: auto;">
+                                  <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000;"><strong>Remaining Leaves</strong></h2>
+                                  <h2 style="text-align: center; margin-top: 1rem; font-weight: 1000; "><strong style="font-size: 4rem;">48</strong></h2>
+                                </div>
+                                </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+  </div>
+ </div>
+ {%endif%}
+ <div class="row mt-1">
+    <div class="col-lg-8 col-md-12">
+        <div class="card" style="height: auto;">
+            <div class="card-header">
+                <h4 class="card-title">Recent Leaves</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><button type="button" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink">See All </button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <!-- <th scope="col">#</th> -->
+                                <th scope="col">Type</th>
+                                <th scope="col">Day(s)</th>
+                                <th scope="col">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {%if request.user.is_superuser or request.user.is_staff %}
+                                {% for leave in leaves %}
+                              <tr>
+
+                                <td>{{ leave.leavetype}}</td>
+                                <td>{{ leave.leave_days }}</td>
+                                {% if leave.is_approved %}
+                                <td style="color:green;font-weight: bold">{{ leave.status }}</td>
+                                {% else %}
+                                <td style="color:">{{ leave.status }}</td>
+                                {% endif %}
+
+                                <td> 
+                                    <a href="{% url 'dashboard:userleaveview' leave.id %}">
+                                        VIEW
+                                    </a>
+                                    
+                                </td>
+                              </tr>
+                              {% endfor %}
+                              {%else%}
+                              {% for leav in staff_leaves %}
+                              <tr>
+
+                                <td>{{ leav.leavetype}}</td>
+                                <td>{{ leav.leave_days }}</td>
+                                {% if leav.is_approved %}
+                                <td style="color:green;font-weight: bold">{{ leav.status }}</td>
+                                {% else %}
+                                <td style="color:">{{ leav.status }}</td>
+                                {% endif %}
+
+                                <td> 
+                                    <a href="{% url 'dashboard:userleaveview' leav.id %}">
+                                        VIEW
+                                    </a>
+                                    
+                                </td>
+                              </tr>
+                              {%endfor%}
+                              {%endif%}
+                            </tbody>
+
+                      </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+  </div>
+ </div>
+
+ {% endblock %}
+
