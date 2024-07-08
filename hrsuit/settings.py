@@ -14,7 +14,7 @@ SECRET_KEY = 'w#b*-*#4ui%e@*(l+r%s3l2$^c4lx_ljcj=-5q3euiwvrx5ki='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # # Email Settings
@@ -92,9 +92,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway',  
         'USER': 'postgres',  
-        'PASSWORD': 'pkzdxCVQiVTvcoUeZdkALeUjzuEEhGRu',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '55531', 
+        'PASSWORD': 'gnrNchJMTmLlTHvgQmppRjCJyDhQCLUc',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'PORT': '34714', 
     }
 }
 # Password validation
