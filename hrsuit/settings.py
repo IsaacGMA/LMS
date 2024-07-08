@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'This Is Secret'
+SECRET_KEY = 'w#b*-*#4ui%e@*(l+r%s3l2$^c4lx_ljcj=-5q3euiwvrx5ki='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -17,12 +17,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Email Settings
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'edward.mike.anaryo@gmail.com' #test
-EMAIL_HOST_PASSWORD = 'yencommerce'#test
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# # Email Settings
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'edward.mike.anaryo@gmail.com' #test
+# EMAIL_HOST_PASSWORD = 'yencommerce'#test
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'phonenumber_field',
     'widget_tweaks',
+    "whitenoise.runserver_nostatic",
 
     # PROJECT APPS
     'dashboard',
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'hrsuit.urls'
@@ -86,15 +88,15 @@ WSGI_APPLICATION = 'hrsuit.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-     
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'DEFAULT_AUTO_FIELD': 'django.db.models.BigAutoField',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'railway',  
+        'USER': 'postgres',  
+        'PASSWORD': 'pkzdxCVQiVTvcoUeZdkALeUjzuEEhGRu',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '55531', 
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -139,6 +141,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # STATIC FILES WILL BE SERVED FROM STATIC_CDN WHEN WE ARE LIVE - OUT SIDE OF PROJECT
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static_cdn','static_root')
