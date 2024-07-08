@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w#b*-*#4ui%e@*(l+r%s3l2$^c4lx_ljcj=-5q3euiwvrx5ki='
+SECRET_KEY = 'w#b*-*#4uie@*(l+rs3l2$^c4lx_ljcj=-5q3euiwvrx5ki='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,9 +92,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'railway',  
         'USER': 'postgres',  
-        'PASSWORD': 'gnrNchJMTmLlTHvgQmppRjCJyDhQCLUc',
+        'PASSWORD': 'xvVNFaFjQTFuClkoxKxzvnYilPMziMyr',
         'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '34714', 
+        'PORT': '39687', 
     }
 }
 # Password validation
